@@ -1,0 +1,22 @@
+html {
+  background-color: black;
+}
+
+body {
+  background-color: black;
+}
+
+/* LOGO */
+.logo {
+  margin: 0px;
+  height: 25px;
+}
+
+/* FORMS */
+.form-background {
+  background-color: black;
+}
+
+.navbar {
+  margin-bottom: 130px;
+}

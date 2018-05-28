@@ -15,13 +15,14 @@
   {%endif%}
 
   {% block styles %}
-    {% bootstrap_css %}
+  {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static "forms.css" %}">
   {% endblock %}
 
 </head>
 
 <body>
-
+  {% include "registration/navbar.html" %}
   {% block content %}  {%endblock%}
 
 
