@@ -2,5 +2,28 @@
 from __future__ import unicode_literals
 
 from django.test import TestCase
+from .models import Neighborhood
+
 
 # Create your tests here.
+class NeighborTestClass(TestCase):
+    '''
+    Testing the Neighbor class
+    '''
+    def setUp(self):
+        '''
+        creates the instance
+        '''
+        self.neighborhood = Neighborhood(neighborhood_name='Tabere', neighborhood_location='Kileleshwa', occupants_count=1)
+
+    def test_instance(self):
+        '''
+        checks the instance of neighborhood
+        '''
+        self.assertTrue(isinstance(self.neighborhood, Neighborhood))
+
+    def test_create_neighborhood(self):
+        '''
+        Tests whether the save_neighborhood function works
+        '''
+        pass
