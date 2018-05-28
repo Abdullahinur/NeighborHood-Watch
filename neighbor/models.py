@@ -30,7 +30,6 @@ class Neighborhood(models.Model):
     def delete_neighborhood(self):
         self.delete()
 
-
     @classmethod
     def search(cls, query):
         neighborhood = cls.objects.filter(name__icontains=query)
@@ -38,7 +37,7 @@ class Neighborhood(models.Model):
 
 
 class UserProfile(models. Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True, related_name='user')
     bio = models.TextField(max_length=500, blank=True)
     image = models.ImageField(upload_to='user_dps', blank=True)
     idnumber = models.CharField(max_length=10,)
@@ -50,17 +49,6 @@ class UserProfile(models. Model):
 
     def __str__(self):
         return self.user
-
-
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
 
 
 class Business(models. Model):

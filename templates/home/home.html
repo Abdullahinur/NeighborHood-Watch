@@ -4,6 +4,8 @@
 {% include "banner.html" %}
 {% if user.is_authenticated %}
 <p><a href="/logout/">Logout</a></p>
+<p><a href="/profile/">View Profile</a></p>
+
 {% else %}
 <p><a href="/login">Login</a></p>
 <p><a href="/register">Register</a></p>

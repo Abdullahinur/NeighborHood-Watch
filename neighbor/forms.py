@@ -2,29 +2,26 @@ from django import forms
 from .models import UserProfile, Neighborhood, Business, Post
 
 
-class UserRegistrationForm(forms.Form):
-    username = forms.CharField(
-        required=True,
-        label='Username',
-        max_length=32
-    )
-    email = forms.CharField(
-        required=True,
-        label='Email',
-        max_length=32,
-    )
-    password = forms.CharField(
-        required=True,
-        label='Password',
-        max_length=32,
-        widget=forms.PasswordInput()
-    )
+class EditProfileForm(forms.ModelForm):
 
+    first_name = forms.CharField(label='First Name')
+    last_name = forms.CharField(label='Last Name')
 
-class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('idnumber', 'image')
+        fields = ['user', 'bio', 'image', 'idnumber', 'neighborhood']
+
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['user', 'bio', 'image', 'idnumber', 'neighborhood']
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('user', 'bio', 'image', 'idnumber', 'neighborhood')
 
 
 class PostForm(forms.ModelForm):
