@@ -14,7 +14,7 @@ class NeighborTestClass(TestCase):
         '''
         creates the instance
         '''
-        self.neighborhood = Neighborhood(neighborhood_name='Tabere', neighborhood_location='Kileleshwa', occupants_count=1)
+        self.neighborhood = Neighborhood(image='test', name='tabere', location='kileleshwa', police='kilimani', ambulance='Nairobi Place')
 
     def test_instance(self):
         '''
@@ -22,8 +22,8 @@ class NeighborTestClass(TestCase):
         '''
         self.assertTrue(isinstance(self.neighborhood, Neighborhood))
 
-    def test_create_neighborhood(self):
+    def test_delete_neighborhood(self):
         '''
         Tests whether the save_neighborhood function works
         '''
-        pass
+        
