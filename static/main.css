@@ -4,6 +4,6 @@
   height: 25px;
 }
 
-navbar:hover {
-
+.navbar {
+  margin-bottom: 1px;
 }

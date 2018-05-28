@@ -1,0 +1,99 @@
+#banner
+{
+  position: relative;
+  background: #333 url(https://lh3.googleusercontent.com/hzxMENkTFWvMhi7cTmBz-b69rrVdmOgb0-R3T-yR88ssoJb4o1ymROwAEIvi5HOBUe2Y2K55e3_wMJL5NlFBYnIpnhFWA6wbv2KypeWCVG4JzInM8RdiDBfqzTDjdRoTtWa5NcJNGszLdBIho2Ik4V8_KN2hM_TQtHKgs2Bw0ZZRwj4oJY3mNJ38OHm9rUZ-_-sLNWCFHMtL7-axt6hACMcZOPncWjOsP2V1VyMwtvkBAmNcNVF1ICROje2O5q7SD3E_6n6xR7w6XSIphYiVeNeyMo_49wrXJJbrCxfFJ5nstUXsLTUoVPT0oGnaI8WiaxGhwpQThocq6TZ-p0ARZIwq1S-qAfGhJw9Uc8ZSd8KPSX5OE9_CaaV98xC3RxuE_0hLEll6jMYXFMe4cNc1CnoPt46ObXPH6ez7AmNtNhmCllqkcIJFjRfS3rS0nj2aJPt-O7sPGUI3iNdAUTwqjDVBS_b0zOIO76Hdln-qsFFHyS8U_HOQccO19lE2dWEwY5rPXGKpI6ZzojFcQQVkrbWeSNy6_4yXXPYggZ7OfgxlJB6HY3HVM5IJVty_cKhpAWWJ_iDgiwXBZuNVXD8_pUCipWrHA2d0vvoTXBg=w2400-h1167-no) no-repeat center;
+  background-size: cover;
+  height: 50vh;
+}
+
+.homepage #banner {
+
+}
+
+
+/*********************************************************************************/
+/* Featured                                                                      */
+/*********************************************************************************/
+
+	#featured
+	{
+		overflow: hidden;
+		padding: 5em 0em;
+		background: #79C255;
+		color: rgba(255,255,255,.8);
+		text-align: center;
+	}
+
+	#featured a
+	{
+		color: rgba(255,255,255,1);
+	}
+
+	#featured .button
+	{
+		background: #FFF;
+		margin-top: 3em;
+		font-size: 1em;
+		color: #79C255;
+	}
+
+	#featured .title
+	{
+	}
+
+	#featured .title h2
+	{
+		color: #FFF;
+	}
+
+	#featured .title .byline
+	{
+		color: rgba(255,255,255,.6);
+	}
+
+/*********************************************************************************/
+/* Featured                                                                      */
+/*********************************************************************************/
+
+.box
+{
+	padding: 3em 2em 2em 2em;
+	border: 1px solid rgba(0,0,0,0.1);
+	border-radius: 8px;
+		text-align: center;
+}
+
+
+#extra {
+		overflow: hidden;
+		padding: 5em 0em;
+	}
+
+#extra .title {
+		text-align: center;
+	}
+
+#extra .button {
+		margin-top: 5em;
+}
+
+#extra .fa {
+		display: block;
+		margin-bottom: 0.5em;
+		text-align: center;
+		font-size: 3em;
+}
+
+.gallery {
+		overflow: hidden;
+		margin-bottom: 3em;
+	}
+
+
+h1, h2, h3
+	{
+		margin: 0;
+		padding: 0;
+		font-weight: 700;
+		color: #2B3F48;
+	}

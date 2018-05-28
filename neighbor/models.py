@@ -35,10 +35,11 @@ class Neighborhood(models.Model):
 
 
 class UserProfile(models. Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(max_length=500, blank=True)
     image = models.ImageField(upload_to='user_dps', blank=True)
     idnumber = models.CharField(max_length=10,)
-    neighborhood = models.ForeignKey(Neighborhood, blank = True)
+    neighborhood = models.ForeignKey(Neighborhood, blank=True)
 
     class Meta:
         verbose_name = 'User Profile'
