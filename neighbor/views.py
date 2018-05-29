@@ -15,6 +15,7 @@ from django.core.mail import EmailMessage
 from django.views.decorators.http import require_POST
 from itertools import chain
 
+
 def signup(request):
     if request.method == 'POST':
         user_form = SignupForm(data = request.POST)
@@ -54,7 +55,7 @@ def signup(request):
     else:
         user_form = SignupForm()
         profile_form = UserProfileForm(data = request.POST)
-    return render(request, 'signup.html', {'user_form': user_form, 'profile_form': profile_form,})
+    return render(request, 'registration/signup.html', {'user_form': user_form, 'profile_form': profile_form,})
 
 def activate(request, uidb64, token):
     try:
@@ -92,7 +93,8 @@ def user_login(request):
 
     else:
         # return HttpResponse('gegeegegeg')
-        return render(request, 'login.html')
+        return render(request, 'registration/login.html')
+
 
 @login_required
 def create_neighborhood(request):
@@ -105,14 +107,16 @@ def create_neighborhood(request):
             return redirect('neighborhoods')
     else:
         print(form.errors)
-    return render(request, 'new_neighborhood.html', context = {'form':form,})
+    return render(request, 'neighborhood/neighborhood.html', context = {'form':form,})
+
 
 @login_required
 def neighborhoods(request):
     neighborhoods = Neighborhood.objects.all()
     # for neighborhood in neighborhoods:
     #     redirect = neighborhood.get_url
-    return render(request, 'view_neighborhoods.html', context = {'neighborhoods' : neighborhoods,})
+    return render(request, 'neighborhood/neighborhood_view.html', context = {'neighborhoods' : neighborhoods,})
+
 
 @login_required
 def show_neighborhood(request, id=None):
@@ -132,12 +136,14 @@ def show_neighborhood(request, id=None):
             return HttpResponseRedirect(next)
     else:
         form = BusinessForm()
-    return render(request,'show_neighborhood.html', context = {'form' : form, 'neighborhood' : neighborhood, 'businesses':businesses})
+    return render(request, 'neighborhood/neighborhood_dash.html', context={'form' : form, 'neighborhood' : neighborhood, 'businesses':businesses})
+
 
 @login_required
 def view_business(request, id=None):
     business = get_object_or_404(Business, id=id)
-    return render(request,'view_business.html', context = {'business':business})
+    return render(request, 'business/view_business.html', context = {'business':business})
+
 
 def index(request):
     neighborhoods = Neighborhood.objects.all().order_by('-id')[:4]
@@ -157,8 +163,8 @@ def index(request):
             message = render_to_string('acc_active_email.html', {
                 'user': user,
                 'domain': current_site.domain,
-                'uid':urlsafe_base64_encode(force_bytes(user.pk)),
-                'token':account_activation_token.make_token(user),
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
             })
             to_email = user_form.cleaned_data.get('email')
             email = EmailMessage(
@@ -177,7 +183,8 @@ def index(request):
     else:
         user_form = SignupForm()
         profile_form = UserProfileForm(data = request.POST)
-        return render(request,'home.html', context = {'neighborhoods' : neighborhoods, 'user_form': user_form, 'profile_form': profile_form,})
+        return render(request, 'home/home.html', context = {'neighborhoods' : neighborhoods, 'user_form': user_form, 'profile_form': profile_form,})
+
 
 @login_required
 def user_logout(request):
@@ -202,7 +209,7 @@ def posts(request, id=None):
             return HttpResponseRedirect(next)
     else:
         form = PostForm()
-    return render(request, 'posts.html', context = {'form':form, 'posts':posts, 'neighborhood':neighborhood,})
+    return render(request, 'posts/posts.html', context = {'form':form, 'posts':posts, 'neighborhood':neighborhood,})
 
 def search(request):
     if 'contains' in request.GET and request.GET["contains"]:
@@ -210,14 +217,15 @@ def search(request):
             businesses = Business.search(query)
             neighborhoods = Neighborhood.search(query)
             results = list(chain(neighborhoods, businesses))
-            
 
-            return render(request,'search.html',{"output":output, "results":results})
+
+            return render(request, 'registration/search.html',{"output":output, "results":results})
 
     else:
         message = "You haven't searched for anything"
-        return render(request, 'search.html',{"message":message})
-    return render(request, 'search.html',)
+        return render(request, 'registration/search.html',{"message":message})
+    return render(request, 'registration/search.html',)
+
 
 @login_required
 def edit_neighborhood(request, id = None):
@@ -237,8 +245,9 @@ def edit_neighborhood(request, id = None):
             update_neighborhood = neighborhood.save()
             return redirect('show_neighborhood', id=n_id)
     else:
-        return render(request, 'edit_neighborhood.html', {'neighborhood':neighborhood, 'n_id' : n_id,})
-    return render(request, 'edit_neighborhood.html', {'neighborhood':neighborhood, 'n_id' : n_id,})
+        return render(request, 'neighborhood/edit_neighborhood.html', {'neighborhood':neighborhood, 'n_id' : n_id,})
+    return render(request, 'neighborhood/edit_neighborhood.html', {'neighborhood':neighborhood, 'n_id' : n_id,})
+
 
 @login_required
 def delete_neighborhood(request, id = None):
@@ -246,7 +255,8 @@ def delete_neighborhood(request, id = None):
     neighborhood.delete_neighborhood()
     return redirect('neighborhoods')
 
+
 @login_required
 def view_user(request, id = None):
     user = get_object_or_404(User, id=id)
-    return render(request, 'view_user.html', {'user':user})
+    return render(request, 'home/view_user.html', {'user':user})
