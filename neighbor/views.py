@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import EditProfileForm
-from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
 
 
 # Create your views here.
@@ -20,11 +19,11 @@ def signup(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect('home')
-    else:
-        form = UserCreationForm()
-    return render(request, 'registration/signup.html', {'form': form})
+        else:
+            form = UserCreationForm()
+            return render(request, 'signup.html', {'form': form})
 
-
+            
 @login_required(login_url='/accounts/login/')
 def home(request):
     title = 'Neighborhood Watch'
@@ -34,7 +33,7 @@ def home(request):
 @login_required
 def profile_view(request):
     user = request.user
-    form = EditProfileForm(initial={'first_name':user.first_name, 'last_name':user.last_name})
+    form = EditProfileForm(initial={'first_name':user.first_name, 'last_name': user.last_name})
     context = {
         "form": form
     }
