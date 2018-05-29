@@ -1,28 +1,19 @@
 from django import forms
-from .models import UserProfile, Neighborhood, Business, Post
+from django.contrib.auth.forms import UserCreationForm
+from neighbor.models import UserProfile, Neighborhood, Business, Post
+from django.contrib.auth.models import User
 
-
-class EditProfileForm(forms.ModelForm):
-
-    first_name = forms.CharField(label='First Name')
-    last_name = forms.CharField(label='Last Name')
+class SignupForm(UserCreationForm):
+    email = forms.EmailField(max_length=200, help_text='Required')
 
     class Meta:
-        model = UserProfile
-        fields = ['user', 'bio', 'image', 'idnumber', 'neighborhood']
+        model = User
+        fields = ('username', 'email', 'password1', 'password2')
 
-
-class UserForm(forms.ModelForm):
+class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['user', 'bio', 'image', 'idnumber', 'neighborhood']
-
-
-class ProfileForm(forms.ModelForm):
-    class Meta:
-        model = UserProfile
-        fields = ('user', 'bio', 'image', 'idnumber', 'neighborhood')
-
+        fields = ('idnumber', 'image')
 
 class PostForm(forms.ModelForm):
     image = forms.FileField(required=False, label='Select an image file', help_text='Please select a photo to upload')
@@ -31,7 +22,6 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ('image', 'text_post',)
         exclude = ('author',)
-
 
 class NeighborhoodForm(forms.ModelForm):
     image = forms.FileField(label='Select an image file', help_text='Please select a photo to upload')
@@ -44,7 +34,6 @@ class NeighborhoodForm(forms.ModelForm):
     class Meta:
         model = Neighborhood
         fields = ('image', 'name', 'location', 'population', 'police', 'ambulance')
-
 
 class BusinessForm(forms.ModelForm):
     name = forms.CharField(help_text="Please enter the name of the business.")
