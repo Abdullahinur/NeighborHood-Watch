@@ -1,46 +1,20 @@
-<p>Sign Up!</p>
-            <form method="post">
-                    {% csrf_token %}
-                      {% for field in user_form %}
-                      <p>
-                        {{ field.label_tag }}<br>
-                        <div class="ff">
-                        {{ field }}
-                        </div>
-                        {% if field.help_text %}
-                          <small style="display: none">{{ field.help_text }}</small>
-                        {% endif %}
-                        {% for error in field.errors %}
-                          <p style="color: red">{{ error }}</p>
-                        {% endfor %}
-                      </p>
-                      {% endfor %}
-                      {% for field in profile_form %}
-                      <p>
-                        {{ field.label_tag }}<br>
-                        {{ field }}
-                        {% if field.help_text %}
-                          <small style="display: none">{{ field.help_text }}</small>
-                        {% endif %}
-                        {% for error in field.errors %}
-                          <p style="color: red">{{ error }}</p>
-                        {% endfor %}
-                      </p>
-                      {% endfor %}
-                      <input type="hidden" name="next" value="{{ request.path }}">
-                    <button type="submit"  style="border: solid 2px black; border-radius: 10px; margin-top: 5px;">Sign up</button>
-                  </form>
-        </div>
-        <div class="SignIn" style="display: inline; float: left; width: 50%; padding-left: 10px;">
-            <p>Already A Member? Log In!</p>
-            <div class="form">
-                    <form id="login_form" method="post" action="{% url 'login' %}">
-                            {% csrf_token %}
-                            <p style="font-weight: bold;">Username:</p><input type="text" name="username" value="" size="50" style="width: 20vw; padding-left: 20px;"/>
-                            <br />
-                            <p style="font-weight: bold;">Password:</p><input type="password" name="password" value="" size="50" style="width: 20vw; padding-left: 20px;"/>
-                            <br />
-                            <input type="hidden" name="next" value="{{ request.path }}">
-                            <input type="submit" value="submit" style="border: solid 2px black; border-radius: 10px; margin-top: 5px;"/>
-                            </form>
-            
+{% extends "registration/base.html" %}
+{% block content %}
+  <h2>Sign up</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <button type="submit">Sign up</button>
+  </form>
+{% endblock %}
