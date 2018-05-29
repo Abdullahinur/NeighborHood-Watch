@@ -16,17 +16,10 @@ python3.6 -m venv virtual
 
  source virtual/bin/activate
 
-    Download pillow
+    Install Requirements
 
- pip install pillow
+ pip install -r requirements.txt
 
-    Download Django 1.11
-
-pip install Django==1.11
-
-    Download Bootstrap
-
- pip install django-bootstrap4
 
 Running the appication
 
