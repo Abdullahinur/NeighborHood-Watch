@@ -10,12 +10,13 @@ from django.dispatch import receiver
 
 # Create your models here.
 class Neighborhood(models.Model):
-    image = models.ImageField(upload_to='neighborhood_photos', null=True)
+    image = models.ImageField(upload_to='neighborhood_photos/', null=True)
     name = models.CharField(max_length=30, default='Unknown', blank=True)
     location = models.CharField(max_length=100, default='Somewhere in Nairobi', blank=True)
     population = models.CharField(max_length=128, default='Unknown', blank=True)
     police = models.CharField(max_length=12, default='911', blank=True)
     ambulance = models.CharField(max_length=12, default='911', blank=True)
+
 
     def __str__(self):
         return self.name
