@@ -25,4 +25,4 @@ class NeighborTestClass(TestCase):
     def test_delete_neighborhood(self):
         '''
         Tests whether the save_neighborhood function works
-        ''
+        '''
