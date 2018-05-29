@@ -11,7 +11,7 @@ class NeighborTestClass(TestCase):
     Testing the Neighbor class
     '''
     def setUp(self):
-        ''
+        '''
         creates the instance
         '''
         self.neighborhood = Neighborhood(image='test', name='tabere', location='kileleshwa', police='kilimani', ambulance='Nairobi Place')
