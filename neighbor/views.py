@@ -57,6 +57,7 @@ def signup(request):
         profile_form = UserProfileForm(data = request.POST)
     return render(request, 'registration/signup.html', {'user_form': user_form, 'profile_form': profile_form,})
 
+
 def activate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
@@ -71,6 +72,7 @@ def activate(request, uidb64, token):
         return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
         return HttpResponse('Activation link is invalid!')
+
 
 def user_login(request):
     if request.method == 'POST':
@@ -160,7 +162,7 @@ def index(request):
 
             current_site = get_current_site(request)
             mail_subject = 'Activate your blog account.'
-            message = render_to_string('acc_active_email.html', {
+            message = render_to_string('registration/email.html', {
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
@@ -191,6 +193,7 @@ def user_logout(request):
     logout(request)
     return redirect('index')
 
+
 @login_required
 def posts(request, id=None):
     neighborhood = get_object_or_404(Neighborhood, id=id)
@@ -210,6 +213,7 @@ def posts(request, id=None):
     else:
         form = PostForm()
     return render(request, 'posts/posts.html', context = {'form':form, 'posts':posts, 'neighborhood':neighborhood,})
+
 
 def search(request):
     if 'contains' in request.GET and request.GET["contains"]:

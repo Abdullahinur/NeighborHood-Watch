@@ -8,6 +8,19 @@
 
 {% else %}
 <p><a href="/login">Login</a></p>
-<p><a href="/register">Register</a></p>
+<p><a href="/signup">Register</a></p>
 {% endif %}
+
+    <div class="popular">
+
+                   <h4>New Neighborhoods</h4>
+                   <a href="{% url 'neighborhoods' %}"><h6>See all</h6></a>
+                   {% for neighborhood in neighborhoods%}
+                   <div class="container">
+                        <img src="{{ neighborhood.image.url }}" style="width: 100%; height: 140px;">
+                        <div class="bottom-left">{{ neighborhood.name }}</div>
+                    </div>
+                   {% endfor %}
+                </div>
+
 {% endblock %}
