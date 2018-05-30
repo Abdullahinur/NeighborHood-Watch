@@ -3,8 +3,8 @@
 
 
   {% if neighborhood.image %}
-  <img src="{{ neighborhood.image.url }}" style="width: 150%; display: block; margin: 0 auto;"> {% else %}
-  <img src="{% static 'IMG/no_image.svg' %}" style="width: 100%; display: block; margin: 0 auto;"> {% endif %}
+  <img src="{{ neighborhood.image.url }}"> {% else %}
+  <img src="{% static 'IMG/no_image.svg' %}"> {% endif %}
 
 
   <p>{{ neighborhood.name }}</p>
