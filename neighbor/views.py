@@ -143,8 +143,8 @@ def show_neighborhood(request, id=None):
 
 
 @login_required
-def view_business(request, id=None):
-    business = get_object_or_404(Business, id=id)
+def view_business(request):
+    business = Business.objects.all()
     return render(request, 'business/view_business.html', context = {'business':business})
 
 
@@ -154,9 +154,9 @@ def create_business(request):
     if request.method == 'POST':
         form = BusinessForm(request.POST, request.FILES)
         if form.is_valid():
-            business = Business(image=request.FILES['image'])
+            business = Business(image=request.FILES.get('image'))
             business = form.save(commit=True)
-            return redirect('business')
+            return redirect('view_business')
     else:
         print(form.errors)
     return render(request, 'business/create_business.html', context={'form': form})

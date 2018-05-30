@@ -1,0 +1,20 @@
+{% extends 'neighborhood/base.html' %} {% load staticfiles %} {% block content %} {% for business in business %}
+<div class="neighborhood-display">
+
+
+  {% if business.image %}
+  <img src="{{ business.image.url }}"> {% else %}
+  <img src="{% static 'IMG/no_image.jpg' %}"> {% endif %}
+
+
+
+</div>
+
+<div style="display: block; padding-left: 400px; margin-top: -210px;">
+  <h2>{{ business.name }}</h2>
+  <h3>Location: {{ business.location }}</h3>
+
+</div>
+</div>
+</div>
+{% endfor %} {% endblock %}
