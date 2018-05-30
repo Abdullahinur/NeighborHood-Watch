@@ -9,6 +9,7 @@
         {% if user.is_authenticated %}
         <h1>hello {{ user.username }}</h1>
         <h2> and welcome to the Neighborhood </h2>
+				<p>You can add a new Neighborhood <a href="{% url 'create_neighborhood' %}">Here</a></p>
       {% else %}
       {% endif %}
 		</div>
