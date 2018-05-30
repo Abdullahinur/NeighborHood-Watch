@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div style="padding-left: 10px;">
+        <h3>Make a post!</h3>
+        <h5>You can post a picture, text or both!</h5>
+        <form id="PostForm" method="post" action="/view/{{ neighborhood.id }}/posts/" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            {% endfor %}
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <input type="submit" name="submit" value="Post" style="border: solid 2px black; border-radius: 10px; margin-top: 5px;"/>
+        </form>
+    </div>
+    <h1 style="text-align:center;">POSTS</h1>
+    <div class="posts" style="margin-top: 50px;">
+        {% for post in posts %}
+        <div class="post" style="border: 2px black solid; padding-left: 20px; padding-right: 20px; border-radius:20px; padding-top: 10px;">
+
+            <div class = "photo" style="width: 50px; height: 50px; -moz-border-radius: 100px; -webkit-border-radius: 100px; border-radius: 100px; border: 1px solid black; overflow: hidden; float: left; margin-right: 10px;">
+                {% if useruserprofile.image %}
+                <img src="{{ user.image.url }}" style="width: 150%; display: block;margin: 0 auto;">
+                {% else %}
+                <img src="{% static 'IMG/no_image.svg' %}" style="width: 100%; display: block;margin: 0 auto;">
+                {% endif %}
+            </div>
+
+        <h3>{{ post.author.username }}</h3>
+        {% if post.image %}
+        <img src="{{ post.image.url }}" style="height: 100px;">
+        {% endif %}
+        <div style="margin-left: 70px"</div><h2>{{ post.text_post }}</h5></div>
+        </div><br>
+        {% endfor %}
+    </div>
+{% endblock %}

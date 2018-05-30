@@ -7,7 +7,7 @@
   {% if user.is_authenticated %}
   <p><a class="btn btn-danger" href="/logout/">Logout</a></p>
   <p><a style="color: black; "class="btn btn-default" href="{% url 'neighborhoods' %}">View Neighborhoods</a></p>
-
+    <p><a style="color: black; "class="btn btn-primary" href="{% url 'create_neighborhood' %}">Add Neighborhoods</a></p>
   {% else %}
   <h4>To get started, create a free account. It only takes 5 minutes!</h4><br>
   <p><a class="btn btn-success" href="/login">Login</a></p>
