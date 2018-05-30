@@ -7,3 +7,35 @@
 .navbar {
   margin-bottom: 1px;
 }
+
+.mine-jumbotron {
+  color: black;
+}
+
+.neighborhoods {
+  padding-left: 190px;
+  padding-right: 190px;
+}
+
+/* Footer */
+
+	#footer {
+		padding: 4em 0 2em 0;
+		background: #f2f2f2;
+	}
+
+		#footer .copyright {
+			color: #bfbfbf;
+			font-size: 0.9em;
+			margin: 0 0 2em 0;
+			padding: 0 1em;
+			text-align: center;
+		}
+
+		@media screen and (max-width: 736px) {
+
+			#footer {
+				padding: 3em 0 1em 0;
+			}
+
+		}
