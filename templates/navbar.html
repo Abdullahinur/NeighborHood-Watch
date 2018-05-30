@@ -5,40 +5,31 @@
         <img class="logo" alt="Brand" src="https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/022013/neighborhood-watch.png?itok=2gKxsfru">
       </a>
       <form class="navbar-form navbar-left" role="search" action="{% url 'search' %}">
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="Search">
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
-
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
     </div>
-    <!--The search form above-->
-    <div class="">
-      {% if user.is_authenticated %}
-      <ul>
-        <p class="dropdown" style="float: right;">
-          <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu" role="menu">
-            <p>
-              <a href="{%url 'index'%}">Home</a>
-            </p>
-            <p>
-              <a href="/accounts/password/change/">Change Password</a>
-            </p>
-            <p>
-              <a href="/logout/">Logout</a>
-            </p>
-          </ul>
-        </p>
-      </ul>
-      {% else %}
-      <li>
-        <a class='btn btn-default' href="/login">Login</a>
-      </li>
-
-      {% endif %}
-    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <ul class="nav navbar-nav">
+         {% if user.is_authenticated %}
+       <li class="dropdown">
+         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
+         <ul class="dropdown-menu">
+           <li><a href="{%url 'index'%}">Home</a></li>
+           <li><a href="/accounts/password/change/">Change Password</a></li>
+           <li><a href="/logout/">Logout</a></li>
+           <li role="separator" class="divider"></li>
+           {% else %}
+           <li><a href="/login">Login</a></li>
+           <li role="separator" class="divider"></li>
+           <li><a href="/signup">Sign Up</a></li>
+           {% endif %}
+         </ul>
+       </li>
+     </ul>
+   </div><!-- /.navbar-collapse -->
   </div>
 </nav>
