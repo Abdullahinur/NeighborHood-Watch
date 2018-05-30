@@ -16,6 +16,10 @@ from django.views.decorators.http import require_POST
 from itertools import chain
 
 
+def confirm(request):
+    return render(request, 'registration/confirm.html')
+
+
 def signup(request):
     if request.method == 'POST':
         user_form = SignupForm(data=request.POST)
@@ -44,11 +48,12 @@ def signup(request):
                 profile.save()
                 registered = True
                 email.send()
+                return redirect('confirm')
             else:
                 profile.save()
                 email.send()
-                next = request.POST.get('next', '/')
-            return HttpResponseRedirect(next)
+                registered = True
+                return redirect('confirm')
 
     else:
         user_form = SignupForm()
@@ -66,8 +71,8 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user)
-        
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+
+        return render(request, 'registration/success.html')
     else:
         return HttpResponse('Activation link is invalid!')
 
