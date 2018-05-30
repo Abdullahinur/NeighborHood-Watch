@@ -4,7 +4,7 @@
 <div class="background-color" style="height: 100%; background-color: grey; padding-top: 10px; padding-bottom: 10px; overflow: hidden;">
 <div class = "hood" style="background-color: white; height: 100%; border-radius: 10px; padding: 20px;">
         <div class = "header" style="height: 250px; width: 100vw;">
-            <div class = "photo" style="width: 200px; height: 200px; -moz-border-radius: 100px; -webkit-border-radius: 100px; border-radius: 100px; border: 1px solid black; overflow: hidden; float: left;">
+            <div class = "photo" style="width: 200px; height: 200px; -moz-border-radius: 100px; -webkit-border-radius: 100px; float: left;">
 
                     {% if neighborhood.image %}
                     <img src="{{ neighborhood.image.url }}" style="width: 150%; display: block;margin: 0 auto;">
@@ -25,7 +25,7 @@
             <h3>Police: {{ neighborhood.police }}</h3>
             <h3>Ambulance: {{ neighborhood.ambulance }}</h3>
             </div>
-            <a href="{% url 'posts' id=neighborhood.id %}"><h3>Chat Room</h3></a>
+            <a href="{% url 'posts' id=neighborhood.id %}"><h3>Posts</h3></a>
         </div>
         <div class="businesses" style="display: inline-block; float: right; margin-top: -350px; margin-right: 100px; max-width: 250px;">
             <h1>Businesses:</h1>

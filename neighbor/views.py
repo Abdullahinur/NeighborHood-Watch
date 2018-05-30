@@ -118,8 +118,6 @@ def create_neighborhood(request):
 @login_required
 def neighborhoods(request):
     neighborhoods = Neighborhood.objects.all()
-    # for neighborhood in neighborhoods:
-    #     redirect = neighborhood.get_url
     return render(request, 'neighborhood/neighborhood_view.html', context = {'neighborhoods' : neighborhoods,})
 
 
