@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="background-color" style="height: 100%; background-color: grey; padding-top: 10px; padding-bottom: 10px; overflow: hidden;">
+<div class = "hood" style="background-color: white; height: 100%; border-radius: 10px; padding: 20px;">
+        <div class = "header" style="height: 250px; width: 100vw;">
+            <div class = "photo" style="width: 200px; height: 200px; -moz-border-radius: 100px; -webkit-border-radius: 100px; float: left;">
+
+                    {% if business.image %}
+                    <img src="{{ business.image.url }}" style="width: 150%; display: block;margin: 0 auto;">
+                    {% else %}
+                    <img src="{% static 'IMG/no_image.jpg' %}" style="width: 100%; display: block;margin: 0 auto;">
+                    {% endif %}
+
+            </div>
+
+
+        </div>
+
+            </div>
+            <a href="{% url 'posts' id=business.id %}"><h3>Posts</h3></a>
+        </div>
+{% endblock %}

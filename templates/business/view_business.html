@@ -12,7 +12,7 @@
 
 <div style="display: block; padding-left: 400px; margin-top: -210px;">
   <h2>{{ business.name }}</h2>
-  <h3>Location: {{ business.location }}</h3>
+  <a href="{% url 'one_business' id=business.id %}"><h3>Location: {{ business.location }}</h3>
 
 </div>
 </div>

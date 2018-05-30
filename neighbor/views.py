@@ -148,6 +148,11 @@ def view_business(request):
     return render(request, 'business/view_business.html', context = {'business':business})
 
 
+def one_business(request, id=None):
+    business = get_object_or_404(Business, id=id)
+    return render(request, 'business/business_dash.html', context = {'business':business})
+
+
 @login_required
 def create_business(request):
     form = BusinessForm()
