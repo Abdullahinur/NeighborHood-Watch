@@ -3,6 +3,7 @@
   margin: 0px;
   height: 25px;
 }
+/* NAVBAR */
 
 .navbar {
   margin-bottom: 1px;
@@ -17,9 +18,11 @@
   padding-right: 190px;
 }
 
+
 /* Footer */
 
 	#footer {
+    margin-top: 60px;
 		padding: 4em 0 2em 0;
 		background: #f2f2f2;
 	}
