@@ -1,7 +1,8 @@
-{% extends "base.html" %}
-
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block stylesheet %}
+{% endblock %}
 {% block content %}
-{% include "banner-search.html" %}
 {% if results %}
 {% else %}
 <h2> Found 0 results with the searched name {{message}}</h2>
@@ -17,7 +18,7 @@
                                 {% if result.image %}
                                 <img src="{{ result.image.url }}" style="width: 150%; display: block; margin: 0 auto;">
                                 {% else %}
-                                <img src="" style="width: 100%; display: block; margin: 0 auto;">
+                                <img src="{% static 'IMG/no_image.svg' %}" style="width: 100%; display: block; margin: 0 auto;">
                                 {% endif %}
 
                             </div>

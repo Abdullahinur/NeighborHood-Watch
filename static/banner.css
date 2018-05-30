@@ -1,7 +1,7 @@
 #banner
 {
   position: relative;
-  background: #333 url(https://wallpaper-house.com/data/out/8/wallpaper2you_270059.jpg) no-repeat center;
+  background: #333 url("../../media/backgrounds/maxresdefault.jpg") no-repeat center;
   background-size: cover;
   height: 50vh;
 }
@@ -17,8 +17,8 @@
 
 	#featured
 	{
+    padding-top: 30px;
 		overflow: hidden;
-		padding: 5em 0em;
 		background: #79C255;
 		color: rgba(255,255,255,.8);
 		text-align: center;
