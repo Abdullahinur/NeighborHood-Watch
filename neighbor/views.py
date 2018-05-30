@@ -15,9 +15,18 @@ from django.core.mail import EmailMessage
 from django.views.decorators.http import require_POST
 from itertools import chain
 
+'''
+Function to return confirm message
+'''
+
 
 def confirm(request):
     return render(request, 'registration/confirm.html')
+
+
+'''
+Function to signup
+'''
 
 
 def signup(request):
@@ -61,6 +70,11 @@ def signup(request):
     return render(request, 'registration/signup.html', {'user_form': user_form, 'profile_form': profile_form,})
 
 
+'''
+Function to send activate the account
+'''
+
+
 def activate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
@@ -75,6 +89,11 @@ def activate(request, uidb64, token):
         return render(request, 'registration/success.html')
     else:
         return HttpResponse('Activation link is invalid!')
+
+
+'''
+Function to login the User
+'''
 
 
 def user_login(request):
@@ -101,6 +120,11 @@ def user_login(request):
         return render(request, 'registration/login.html')
 
 
+'''
+Function to create neighborhood
+'''
+
+
 @login_required
 def create_neighborhood(request):
     form = NeighborhoodForm()
@@ -115,10 +139,20 @@ def create_neighborhood(request):
     return render(request, 'neighborhood/neighborhood.html', context = {'form':form,})
 
 
+'''
+Function to display neighborhoods
+'''
+
+
 @login_required
 def neighborhoods(request):
     neighborhoods = Neighborhood.objects.all()
     return render(request, 'neighborhood/neighborhood_view.html', context = {'neighborhoods' : neighborhoods,})
+
+
+'''
+Function to edit neighborhoods
+'''
 
 
 @login_required
@@ -142,15 +176,30 @@ def show_neighborhood(request, id=None):
     return render(request, 'neighborhood/neighborhood_dash.html', context={'form' : form, 'neighborhood' : neighborhood, 'businesses':businesses})
 
 
+'''
+Function to display businesses
+'''
+
+
 @login_required
 def view_business(request):
     business = Business.objects.all()
     return render(request, 'business/view_business.html', context = {'business':business})
 
 
+'''
+Function to display one businesses
+'''
+
+
 def one_business(request, id=None):
     business = get_object_or_404(Business, id=id)
     return render(request, 'business/business_dash.html', context = {'business':business})
+
+
+'''
+Function to add businesses
+'''
 
 
 @login_required
@@ -165,6 +214,11 @@ def create_business(request):
     else:
         print(form.errors)
     return render(request, 'business/create_business.html', context={'form': form})
+
+
+'''
+Function to display the home page
+'''
 
 
 def index(request):
@@ -208,10 +262,20 @@ def index(request):
         return render(request, 'home/home.html', context = {'neighborhoods' : neighborhoods, 'user_form': user_form, 'profile_form': profile_form,})
 
 
+'''
+Function to logout users
+'''
+
+
 @login_required
 def user_logout(request):
     logout(request)
     return redirect('index')
+
+
+'''
+Function to display posts
+'''
 
 
 @login_required
@@ -235,6 +299,11 @@ def posts(request, id=None):
     return render(request, 'posts/posts.html', context = {'form':form, 'posts':posts, 'neighborhood':neighborhood,})
 
 
+'''
+Function to search for neighborhood
+'''
+
+
 def search(request):
     if 'contains' in request.GET and request.GET["contains"]:
             query = request.GET.get("contains")
@@ -249,6 +318,11 @@ def search(request):
         message = "You haven't searched for anything"
         return render(request, 'registration/search.html',{"message":message})
     return render(request, 'registration/search.html',)
+
+
+'''
+Function to edit neighborhood
+'''
 
 
 @login_required
@@ -273,11 +347,21 @@ def edit_neighborhood(request, id = None):
     return render(request, 'neighborhood/edit_neighborhood.html', {'neighborhood':neighborhood, 'n_id' : n_id,})
 
 
+'''
+Function to delete neighborhood
+'''
+
+
 @login_required
 def delete_neighborhood(request, id = None):
     neighborhood = get_object_or_404(Neighborhood, id=id)
     neighborhood.delete_neighborhood()
     return redirect('neighborhoods')
+
+
+'''
+Function to view user
+'''
 
 
 @login_required
