@@ -18,23 +18,22 @@ from itertools import chain
 
 def signup(request):
     if request.method == 'POST':
-        user_form = SignupForm(data = request.POST)
-        profile_form = UserProfileForm(data = request.POST)
+        user_form = SignupForm(data=request.POST)
+        profile_form = UserProfileForm(data=request.POST)
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save(commit=False)
             user.is_active = False
             user.save()
             profile = profile_form.save(commit=False)
             profile.user = user
-            print('1')
 
             current_site = get_current_site(request)
             mail_subject = 'Activate your blog account.'
-            message = render_to_string('acc_active_email.html', {
+            message = render_to_string('email.html', {
                 'user': user,
                 'domain': current_site.domain,
-                'uid':urlsafe_base64_encode(force_bytes(user.pk)),
-                'token':account_activation_token.make_token(user),
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
             })
             to_email = user_form.cleaned_data.get('email')
             email = EmailMessage(
@@ -50,7 +49,6 @@ def signup(request):
                 email.send()
                 next = request.POST.get('next', '/')
             return HttpResponseRedirect(next)
-            # return HttpResponse('Please confirm your email address to complete the registration')
 
     else:
         user_form = SignupForm()

@@ -1,22 +1,39 @@
-{% extends "registration/base.html" %}
+{%extends "registration/base.html"%}
+
+{% load staticfiles %}
 
 
 {% block content %}
-  <h2>Sign up</h2>
+<h1 style="text-align: center;">Please sign up to continue</h1>
+<div class="form" style="text-align: center; margin-top: 5vh; width: 15vw; margin:auto;">
   <form method="post">
     {% csrf_token %}
-    {% for field in form %}
+      {% for field in user_form %}
       <p>
         {{ field.label_tag }}<br>
         {{ field }}
         {% if field.help_text %}
-          <small style="color: grey">{{ field.help_text }}</small>
+          <small style="display: none">{{ field.help_text }}</small>
         {% endif %}
         {% for error in field.errors %}
           <p style="color: red">{{ error }}</p>
         {% endfor %}
       </p>
-    {% endfor %}
-    <button type="submit">Sign up</button>
+      {% endfor %}
+      {% for field in profile_form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="display: none">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+      {% endfor %}
+    <button type="submit" style="border: solid 2px black; border-radius: 10px; margin-top: 5px;">Sign up</button>
   </form>
+  </div>
+  <a href="{% url 'login' %}"><h5 style="text-align: center;">Already have an account? Login!</h5></a>
 {% endblock %}

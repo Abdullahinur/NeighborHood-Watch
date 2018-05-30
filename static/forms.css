@@ -1,6 +1,12 @@
 
 body {
   background-color: black;
+  text-align: center;
+  color: white;
+}
+
+input {
+  color: black;
 }
 
 /* LOGO */
@@ -13,4 +19,8 @@ body {
 
 .navbar {
   margin-bottom: 130px;
+}
+
+.signup-form{
+  text-align: center;
 }

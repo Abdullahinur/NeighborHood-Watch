@@ -3,17 +3,17 @@
 
 
 {% block content %}
-<div class="form-background">
-  <div class="form" style="text-align: center; margin-top: 10vh; width: 30vw; margin: 0 auto;">
+<div class="signup-form">
+  <div class="form">
         <h1>Please log in to continue</h1>
         <form id="login_form" method="post" action="{% url 'login' %}">
                 {% csrf_token %}
                 <p>Username:</p>
-                <input type="text" name="username" value="" size="50" style="padding-left: 20px;"/>
+                <input type="text" name="username" value=""/>
                 <p>Password:</p>
                 <br>
-                <input type="password" name="password" value="" size="50" style="padding-left: 20px;"/>
-                <input type="submit" value="login" style="border: solid 2px black; border-radius: 10px; margin-top: 5px;"/>
+                <input type="password" name="password" value=""/>
+                <input type="submit" value="login"/>
                 </form>
                 <a href="{% url 'signup' %}"><h5>Dont' have an account? Sign Up!</h5></a>
 </div>

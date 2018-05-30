@@ -16,13 +16,14 @@
 
   {% block styles %}
   {% bootstrap_css %}
-    <!-- <link rel="stylesheet" href="{% static "forms.css" %}"> -->
+    <link rel="stylesheet" href="{% static "forms.css" %}">
   {% endblock %}
 
 </head>
 
 <body>
 
+  {% include "registration/navbar.html" %}
   {% block content %}
   {% if user.is_authenticated %}
   <a href="{% url 'logout' %}">logout</a>
