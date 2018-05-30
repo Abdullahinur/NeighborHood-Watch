@@ -66,7 +66,7 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user)
-        # return redirect('home')
+        
         return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
         return HttpResponse('Activation link is invalid!')
@@ -79,7 +79,7 @@ def user_login(request):
         user = authenticate(username=username, password=password)
 
         if user:
-            if user.is_active:
+            if user:
                 login(request, user)
                 next = request.POST.get('next', '/')
                 return HttpResponseRedirect(next)
@@ -89,10 +89,10 @@ def user_login(request):
 
         else:
             print("Invalid login details: {0}, {1}".format(username, password))
-            return HttpResponse("Invalid login details supplied.")
+            return render(request, 'registration/invalid.html')
 
     else:
-        # return HttpResponse('gegeegegeg')
+
         return render(request, 'registration/login.html')
 
 

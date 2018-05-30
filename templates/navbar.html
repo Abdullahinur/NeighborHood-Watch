@@ -1,10 +1,10 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/">
         <img class="logo" alt="Brand" src="https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/022013/neighborhood-watch.png?itok=2gKxsfru">
       </a>
-      <form class="navbar-form navbar-left" role="search">
+      <form class="navbar-form navbar-left" role="search" action="{% url 'search' %}">
   <div class="form-group">
     <input type="text" class="form-control" placeholder="Search">
   </div>
@@ -23,7 +23,7 @@
           <ul class="dropdown-menu" role="menu">
             <li>
               <a href="{%url 'index'%}">Home</a>
-            </li>
+            </li>``
             <li>
               <a href="/accounts/password/change/">Change Password</a>
             </li>
