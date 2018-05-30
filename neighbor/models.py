@@ -17,7 +17,6 @@ class Neighborhood(models.Model):
     police = models.CharField(max_length=12, default='911', blank=True)
     ambulance = models.CharField(max_length=12, default='911', blank=True)
 
-
     def __str__(self):
         return self.name
 
@@ -57,7 +56,7 @@ class Business(models. Model):
     image = models.ImageField(upload_to='business_images', blank=True)
     location = models.CharField(max_length=30, default='Unknown')
     additional_details = models.CharField(max_length=30, blank=True)
-    neighborhood = models.ForeignKey(Neighborhood, blank=True)
+    neighborhood = models.ForeignKey(Neighborhood, blank=True, null=True)
 
     class Meta:
         verbose_name = 'Business'

@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from neighbor.models import UserProfile, Neighborhood, Business, Post
 from django.contrib.auth.models import User
 
+
 class SignupForm(UserCreationForm):
     email = forms.EmailField(max_length=200, help_text='Required')
 
@@ -10,10 +11,12 @@ class SignupForm(UserCreationForm):
         model = User
         fields = ('username', 'email', 'password1', 'password2')
 
+
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('idnumber', 'image')
+        fields = ('idnumber', 'neighborhood', 'image')
+
 
 class PostForm(forms.ModelForm):
     image = forms.FileField(required=False, label='Select an image file', help_text='Please select a photo to upload')
@@ -22,6 +25,7 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ('image', 'text_post',)
         exclude = ('author',)
+
 
 class NeighborhoodForm(forms.ModelForm):
     image = forms.FileField(label='Select an image file', help_text='Please select a photo to upload')
@@ -34,6 +38,7 @@ class NeighborhoodForm(forms.ModelForm):
     class Meta:
         model = Neighborhood
         fields = ('image', 'name', 'location', 'population', 'police', 'ambulance')
+
 
 class BusinessForm(forms.ModelForm):
     name = forms.CharField(help_text="Please enter the name of the business.")
