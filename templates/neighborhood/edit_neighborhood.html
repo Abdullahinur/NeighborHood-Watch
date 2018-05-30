@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="background-color" style="height: 100%; background-color: grey; padding-top: 10px; padding-bottom: 10px; overflow: hidden;">
+<div class = "hood" style="background-color: white; height: 100%; border-radius: 10px; padding: 20px;">
+        <div class = "header" style="height: 250px; width: 100vw;">
+            <div class = "photo" style="width: 200px; height: 200px; -moz-border-radius: 100px; -webkit-border-radius: 100px; border-radius: 100px; border: 1px solid black; overflow: hidden; float: left;">
+
+                    {% if neighborhood.image %}
+                    <img src="{{ neighborhood.image.url }}" style="width: 150%; display: block;margin: 0 auto;">
+                    {% else %}
+                    <img src="{% static 'IMG/no_image.svg' %}" style="width: 100%; display: block;margin: 0 auto;">
+                    {% endif %}
+
+            </div>
+
+            <p style="float: left; margin-left: 100px; font-size: 50px; font-style: italic;">{{ neighborhood.name }}</p>
+        </div>
+        <div class="form description" style="display: block; padding-left: 350px; margin-top: -150px;">
+                        <form id="login_form" method="post" action="{% url 'edit_neighborhood' id=n_id %}">
+                                {% csrf_token %}
+                                {% if neighborhood.image %}
+                                Image: <input type="file" name="image" value="{{ neighborhood.image }}" size="50" />
+                                <br />
+                                {% else %}
+                                Image: <input type="file" name="image" value="" size="50" />
+                                <br />
+                                {% endif %}
+                                Name: <input type="text" name="name" value="{{ neighborhood.name }}" size="50" />
+                                <br /> <p>30 character maximum</p>
+                                Location: <input type="text" name="location" value="{{ neighborhood.location }}" size="50" /> <p>100 character maximum</p>
+                                <br />
+                                Population: <input type="text" name="population" value="{{ neighborhood.population }}" size="50" />
+                                <br />
+                                Police: <input type="text" name="police" value="{{ neighborhood.police }}" size="50" /> <p>12 character maximum</p>
+                                <br />
+                                Ambulance: <input type="text" name="ambulance" value="{{ neighborhood.ambulance }}" size="50" /><p>12 character maximum</p>
+                                <br />
+                                <input type="hidden" name="next" value="{{ request.path }}">
+                                <input type="submit" value="save" style="border: solid 2px black; border-radius: 10px; margin-top: 5px;" />
+                                </form>
+                </div>
+                <a href="{% url 'delete_neighborhood' id=neighborhood.id%}"><p>Delete</p></a>
+        </div>
+</div>
+{% endblock %}
