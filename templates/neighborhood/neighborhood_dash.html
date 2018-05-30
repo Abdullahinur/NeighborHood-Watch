@@ -37,7 +37,7 @@
             {% else %}
             <h3>No Businesses Have Been Added</h3>
             {% endif %}
-            <a class="showform"><h5>Add A Business</h5></a>
+            <a href="{% url 'create_business' %}"><h5>Add A Business</h5></a>
         </div>
             <div id="addbusiness" style="display: none;">
                     <form id="BusinessForm" method="post" action="/view/{{ neighborhood.id }}/" enctype="multipart/form-data">

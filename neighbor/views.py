@@ -148,6 +148,20 @@ def view_business(request, id=None):
     return render(request, 'business/view_business.html', context = {'business':business})
 
 
+@login_required
+def create_business(request):
+    form = BusinessForm()
+    if request.method == 'POST':
+        form = BusinessForm(request.POST, request.FILES)
+        if form.is_valid():
+            business = Business(image=request.FILES['image'])
+            business = form.save(commit=True)
+            return redirect('business')
+    else:
+        print(form.errors)
+    return render(request, 'business/create_business.html', context={'form': form})
+
+
 def index(request):
     neighborhoods = Neighborhood.objects.all().order_by('-id')[:4]
     if request.method == 'POST':
