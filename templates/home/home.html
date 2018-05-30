@@ -2,28 +2,31 @@
 
 {% block content %}
 {% include "banner.html" %}
-{% if user.is_authenticated %}
-<p><a href="/logout/">Logout</a></p>
-<p><a href="/profile/">View Profile</a></p>
+<div class="main">
 
-{% else %}
-<h4>To get started, create a free account. It only takes 5 minutes!</h4><br>
-<p><a href="/login">Login</a></p>
-<p><a href="/signup">Register</a></p>
-{% endif %}
+  {% if user.is_authenticated %}
+  <p><a class="btn btn-danger"href="/logout/">Logout</a></p>
+  <p><a href="/profile/">View Profile</a></p>
+
+  {% else %}
+  <h4>To get started, create a free account. It only takes 5 minutes!</h4><br>
+  <p><a href="/login">Login</a></p>
+  <p><a href="/signup">Register</a></p>
+  {% endif %}
   <div class="neighborhoods" style="margin-top: 350px;">
-      <div class="mine-jumbotron jumbotron">
-              <div class="container" style="height: 200px; overflow: hidden; padding: 0px;">
-                 <h4>Neighborhoods</h4>
-                 <a href="{% url 'neighborhoods' %}"><h6 style="color: black; display: inline; float: right;">More</h6></a>
-                 {% for neighborhood in neighborhoods%}
-                 <div class="container" style="float: left; width: 20vw; margin-right: 2vw;">
-                      <img src="{{ neighborhood.image.url }}" style="width: 100%; height: 140px;">
-                      <div class="bottom-left">{{ neighborhood.name }}</div>
-                  </div>
-                 {% endfor %}
-              </div>
-          </div>
+    <div class="mine-jumbotron jumbotron">
+      <div class="container" style="height: 200px; overflow: hidden; padding: 0px;">
+        <h4>Neighborhoods</h4>
+        <a href="{% url 'neighborhoods' %}"><h6 style="color: black; display: inline; float: right;">More</h6></a>
+        {% for neighborhood in neighborhoods%}
+        <div class="container" style="float: left; width: 20vw; margin-right: 2vw;">
+          <img src="{{ neighborhood.image.url }}" style="width: 100%; height: 140px;">
+          <div class="bottom-left">{{ neighborhood.name }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
   </div>
+</div>
 
 {% endblock %}

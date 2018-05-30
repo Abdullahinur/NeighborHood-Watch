@@ -13,17 +13,17 @@
 
     </div>
     <!--The search form above-->
-    <div class="col-sm-6 col-md-6">
+    <div class="">
       {% if user.is_authenticated %}
       <ul>
-        <li class="dropdown">
+        <p class="dropdown" style="float: right;">
           <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu" role="menu">
             <li>
               <a href="{%url 'index'%}">Home</a>
-            </li>``
+            </li>
             <li>
               <a href="/accounts/password/change/">Change Password</a>
             </li>
@@ -31,7 +31,7 @@
               <a href="/logout/">Logout</a>
             </li>
           </ul>
-        </li>
+        </p>
       </ul>
       {% else %}
       <li>

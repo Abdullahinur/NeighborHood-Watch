@@ -1,26 +1,19 @@
-{% extends 'base.html' %}
-{% load staticfiles %}
-
-{% block content %}
-        {% for neighborhood in neighborhoods%}
-        <div class="">
+{% extends 'base.html' %} {% load staticfiles %} {% block content %} {% for neighborhood in neighborhoods%}
+<div class="neighborhood-display">
 
 
-                                {% if neighborhood.image %}
-                                <img src="{{ neighborhood.image.url }}" style="width: 150%; display: block; margin: 0 auto;">
-                                {% else %}
-                                <img src="{% static 'IMG/no_image.svg' %}" style="width: 100%; display: block; margin: 0 auto;">
-                                {% endif %}
+  {% if neighborhood.image %}
+  <img src="{{ neighborhood.image.url }}" style="width: 150%; display: block; margin: 0 auto;"> {% else %}
+  <img src="{% static 'IMG/no_image.svg' %}" style="width: 100%; display: block; margin: 0 auto;"> {% endif %}
 
 
-                            <p>{{ neighborhood.name }}</p>
-                        </div>
+  <p>{{ neighborhood.name }}</p>
+</div>
 
-                        <div class = "decription" style="display: block; padding-left: 350px; margin-top: -150px;">
-                            <h3>Location: {{ neighborhood.location }}</h3>
-                            <a href="{% url 'show_neighborhood' id=neighborhood.id %}"><h3>More...</h3></a>
-                        </div>
-                </div>
-                </div>
-        {% endfor %}
-{% endblock %}
+<div class="decription" style="display: block; padding-left: 350px; margin-top: -150px;">
+  <h3>Location: {{ neighborhood.location }}</h3>
+  <a href="{% url 'show_neighborhood' id=neighborhood.id %}"><h3>More...</h3></a>
+</div>
+</div>
+</div>
+{% endfor %} {% endblock %}
