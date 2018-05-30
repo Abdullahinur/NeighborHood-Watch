@@ -25,7 +25,6 @@ Running the appication
 
     Running the server
 
-Source virtual/bin/activate
 python3.6 manage.py runserver
 
 Deployment
